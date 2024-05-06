@@ -12,7 +12,7 @@ const Navbar = () => {
                         <a className='hover:font-bold' href="">Contact</a>
                     </li>
                 </ul>
-            </div>
+            </div> 
         </nav> 
     )
 }
