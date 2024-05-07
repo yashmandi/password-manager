@@ -78,9 +78,45 @@ const Manager = () => {
                         <tbody className='bg-blue-100 '>
                             {passwordArray.map((item, index) => {
                                 return <tr key={index}>
-                                    <td className='py-2 border border-white text-center w-32'><a href={item.site} target='_blank'>{item.site}</a></td>
-                                    <td className='py-2 border border-white text-center w-32'>{item.username}</td>
-                                    <td className='py-2 border border-white text-center w-32'>{item.password}</td>
+                                    <td className='py-2 border border-white text-center'>
+                                        <div className='flex items-center justify-center'>
+                                            <a href={item.site} target='_blank'>{item.site}</a>
+                                            <div className='lordiconcopy size-7 cursor-pointer' onClick={copyText(item.site)}>
+                                                <lord-icon
+                                                    style={{ width: 25, height: 25, "padding": "5px" }}
+                                                    className='cursor-pointer'
+                                                    src="https://cdn.lordicon.com/iykgtsbt.json"
+                                                    trigger="hover">
+                                                </lord-icon>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td className='py-2 border border-white text-center w-32'>
+                                        <div className='flex items-center justify-center'>
+                                            <span>{item.username}</span>
+                                            <div className='lordiconcopy size-7 cursor-pointer' onClick={copyText(item.username)}>
+                                                <lord-icon
+                                                    style={{ width: 25, height: 25, "padding": "5px" }}
+                                                    className='cursor-pointer'
+                                                    src="https://cdn.lordicon.com/iykgtsbt.json"
+                                                    trigger="hover">
+                                                </lord-icon>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td className='py-2 border border-white text-center w-32'>
+                                        <div className='flex items-center justify-center'>
+                                            <span>{item.password}</span>
+                                            <div className='lordiconcopy size-7 cursor-pointer' onClick={copyText(item.password)}>
+                                                <lord-icon
+                                                    style={{ width: 25, height: 25, "padding": "5px" }}
+                                                    className='cursor-pointer'
+                                                    src="https://cdn.lordicon.com/iykgtsbt.json"
+                                                    trigger="hover">
+                                                </lord-icon>
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                             })}
                         </tbody>
