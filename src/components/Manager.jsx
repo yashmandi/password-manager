@@ -26,7 +26,7 @@ const Manager = () => {
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            theme: "dark",
+            theme: "light",
         });
         navigator.clipboard.writeText(text);
     }
@@ -47,16 +47,6 @@ const Manager = () => {
         localStorage.setItem("password", JSON.stringify([...passwordArray, { ...form, id: uuidv4() }]))
         console.log([...passwordArray, form]);
         setform({ site: "", username: "", password: "" })
-        toast('Password saved!', {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-        });
     }
 
     const deletePassword = (id) => {
@@ -65,16 +55,6 @@ const Manager = () => {
         if (c) {
             setPasswordArray(passwordArray.filter(item => item.id !== id))
             localStorage.setItem("passwords", JSON.stringify(passwordArray.filter(item => item.id !== id)))
-            toast('Password deleted', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-            });
         }
     }
 
@@ -90,6 +70,7 @@ const Manager = () => {
 
     return (
         <div>
+
             <ToastContainer
                 position="top-right"
                 autoClose={5000}
@@ -107,13 +88,13 @@ const Manager = () => {
             <ToastContainer />
 
             <div class="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]"><div class="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_500px_at_50%_200px,#C9EBFF,transparent)]"></div></div>
-            <div className="md:mycontainer">
+            <div className=" mycontainer">
                 <div className=' justify-center'>
                     <h1 className='text-3xl font-bold text-center'>
                         <img src="icons/password.png" className='w-12 h-12 ml-[450px] mb-2' />SafeCypher
                     </h1>
                 </div>
-                <p className='text-center text-md mt-2 italic'>Your Personal Password Manager</p>
+                <p className='text-center text-md mt-2 italic'>Unlock Security with SafeCypher</p>
 
                 <div className='text-white flex flex-col p-4 text-black gap-3 items-center'>
 
