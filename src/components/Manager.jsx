@@ -14,6 +14,11 @@ const Manager = () => {
         }
     }, [])
 
+    const copyText = (text) => {
+        alert("copied to clipboard: " + text);
+        navigator.clipboard.writeText(text);
+    }
+
     const showPassword = () => {
         passwordRef.current.type = "text";
         if (ref.current.src.includes("icons/close-eye.png")) {
@@ -81,7 +86,7 @@ const Manager = () => {
                                     <td className='py-2 border border-white text-center'>
                                         <div className='flex items-center justify-center'>
                                             <a href={item.site} target='_blank'>{item.site}</a>
-                                            <div className='lordiconcopy size-7 cursor-pointer' onClick={copyText(item.site)}>
+                                            <div className='lordiconcopy size-7 cursor-pointer' onClick={() => { copyText(item.site) }}>
                                                 <lord-icon
                                                     style={{ width: 25, height: 25, "padding": "5px" }}
                                                     className='cursor-pointer'
@@ -94,7 +99,7 @@ const Manager = () => {
                                     <td className='py-2 border border-white text-center w-32'>
                                         <div className='flex items-center justify-center'>
                                             <span>{item.username}</span>
-                                            <div className='lordiconcopy size-7 cursor-pointer' onClick={copyText(item.username)}>
+                                            <div className='lordiconcopy size-7 cursor-pointer' onClick={() => copyText(item.username)}>
                                                 <lord-icon
                                                     style={{ width: 25, height: 25, "padding": "5px" }}
                                                     className='cursor-pointer'
@@ -107,7 +112,7 @@ const Manager = () => {
                                     <td className='py-2 border border-white text-center w-32'>
                                         <div className='flex items-center justify-center'>
                                             <span>{item.password}</span>
-                                            <div className='lordiconcopy size-7 cursor-pointer' onClick={copyText(item.password)}>
+                                            <div className='lordiconcopy size-7 cursor-pointer' onClick={() => copyText(item.password)}>
                                                 <lord-icon
                                                     style={{ width: 25, height: 25, "padding": "5px" }}
                                                     className='cursor-pointer'
