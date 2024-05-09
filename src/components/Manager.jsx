@@ -52,20 +52,21 @@ const Manager = () => {
     const deletePassword = (id) => {
         console.log("Deleting Password: ", id);
         let c = confirm("Are you sure you want to delete this password?")
+        // toast('Deleted Password!', {
+        //     position: "top-right",
+        //     autoClose: 5000,
+        //     hideProgressBar: false,
+        //     closeOnClick: true,
+        //     pauseOnHover: true,
+        //     draggable: true,
+        //     progress: undefined,
+        //     theme: "dark",
+        // });
         if (c) {
             setPasswordArray(passwordArray.filter(item => item.id !== id))
             localStorage.setItem("passwords", JSON.stringify(passwordArray.filter(item => item.id !== id)))
         }
-        toast('Deleted Password!', {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-        });
+
     }
 
     const editPassword = (id) => {
@@ -109,7 +110,7 @@ const Manager = () => {
 
                 <div className='text-white flex flex-col p-4 text-black gap-3 items-center'>
 
-                    <input value={form.site} onChange={handleChange} className='rounded-xl border text-black border-blue-800 p-4 py-1 w-full' placeholder='Enter Website URL' type="text" name="site" id="site" />
+                    <input value={form.site} onChange={handleChange} className='rounded-xl border text-black border-blue-800 p-4 py-1 w-full md:w-[300px]' placeholder='Enter Website URL' type="text" name="site" id="site" />
 
                     <div className='flex flex-col md:flex-row w-full justify-center gap-3'>
                         <input value={form.username} onChange={handleChange} className='rounded-xl border text-black border-blue-800 p-4 py-1 w-[300px]' placeholder='Enter Username' type="text" name="username" id="username" />
