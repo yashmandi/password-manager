@@ -26,7 +26,7 @@ const Manager = () => {
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            theme: "light",
+            theme: "dark",
         });
         navigator.clipboard.writeText(text);
     }
@@ -56,6 +56,16 @@ const Manager = () => {
             setPasswordArray(passwordArray.filter(item => item.id !== id))
             localStorage.setItem("passwords", JSON.stringify(passwordArray.filter(item => item.id !== id)))
         }
+        toast('Deleted Password!', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+        });
     }
 
     const editPassword = (id) => {
@@ -88,23 +98,24 @@ const Manager = () => {
             <ToastContainer />
 
             <div class="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]"><div class="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_500px_at_50%_200px,#C9EBFF,transparent)]"></div></div>
-            <div className=" mycontainer">
-                <div className=' justify-center'>
-                    <h1 className='text-3xl font-bold text-center'>
-                        <img src="icons/password.png" className='w-12 h-12 ml-[450px] mb-2' />SafeCypher
+            <div className="p-2 md:p-0 md:mycontainer ">
+                <div className='p-4 flex flex-col justify-center'>
+                    <img src="icons/password.png" className='w-12 h-12 mx-auto ' />
+                    <h1 className='text-3xl font-bold py-3 text-center'>
+                        SafeCypher
                     </h1>
+                    <p className='text-center text-md mt-[-4px] italic'>Unlock Security with SafeCypher</p>
                 </div>
-                <p className='text-center text-md mt-2 italic'>Unlock Security with SafeCypher</p>
 
                 <div className='text-white flex flex-col p-4 text-black gap-3 items-center'>
 
-                    <input value={form.site} onChange={handleChange} className='rounded-xl border text-black border-blue-800 p-4 py-1 w-full' placeholder='Enter Website URL' type="text" name="site" id="" />
+                    <input value={form.site} onChange={handleChange} className='rounded-xl border text-black border-blue-800 p-4 py-1 w-full' placeholder='Enter Website URL' type="text" name="site" id="site" />
 
-                    <div className='flex w-full justify-center gap-3'>
-                        <input value={form.username} onChange={handleChange} className='rounded-xl border text-black border-blue-800 p-4 py-1 w-[300px]' placeholder='Enter Username' type="text" name="username" id="" />
+                    <div className='flex flex-col md:flex-row w-full justify-center gap-3'>
+                        <input value={form.username} onChange={handleChange} className='rounded-xl border text-black border-blue-800 p-4 py-1 w-[300px]' placeholder='Enter Username' type="text" name="username" id="username" />
 
                         <div className="relative">
-                            <input ref={passwordRef} value={form.password} onChange={handleChange} className='rounded-xl text-black border border-blue-800 p-4 py-1 w-[300px]' placeholder='Enter Password' type="password" name="password" id="" />
+                            <input ref={passwordRef} value={form.password} onChange={handleChange} className='rounded-xl text-black border border-blue-800 p-4 py-1 w-[300px]' placeholder='Enter Password' type="password" name="password" id="password" />
                             <span className='absolute right-0 top-0 cursor-pointer' onClick={showPassword}>
                                 <img ref={ref} src="icons/open-eye.png" width={20} height={40} className='mt-[7px] mr-2' alt="eye" />
                             </span>
