@@ -10,7 +10,12 @@ const Manager = () => {
     const [form, setform] = useState({ site: "", username: "", password: "" })
     const [passwordArray, setPasswordArray] = useState([])
 
-    const getPas
+    const getPasswords = async () => {
+        let req = fetch("https://localhost:3000/");
+        let passwords = await req.JSON();
+        console.log(passwords);
+        setPasswordArray(passwords);
+    }
 
     // useEffect(() => {
     //     let passwords = localStorage.getItem("passwords");
@@ -20,11 +25,8 @@ const Manager = () => {
     // }, [])
 
     useEffect(() => {
-        let req = fethc ("https://localhost:3000/");
-        let passwords = localStorage.getItem("passwords");
-        if (passwords) {
-            setPasswordArray(JSON.parse(passwords))
-        }
+        getPasswords();
+
     }, [])
 
     const copyText = (text) => {
@@ -52,29 +54,33 @@ const Manager = () => {
         }
     }
 
-    const savePassword = () => {
+    const savePassword = async () => {
         setPasswordArray([...passwordArray, { ...form, id: uuidv4() }])
-        localStorage.setItem("password", JSON.stringify([...passwordArray, { ...form, id: uuidv4() }]))
-        console.log([...passwordArray, form]);
+        let res = await fetch("https://localhost:3000/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ ...form, id: uuidv4() })
+        })
+        // localStorage.setItem("password", JSON.stringify([...passwordArray, { ...form, id: uuidv4() }]))
+        // console.log([...passwordArray, form]);
         setform({ site: "", username: "", password: "" })
     }
 
-    const deletePassword = (id) => {
+    const deletePassword = async (id) => {
         console.log("Deleting Password: ", id);
         let c = confirm("Are you sure you want to delete this password?")
-        // toast('Deleted Password!', {
-        //     position: "top-right",
-        //     autoClose: 5000,
-        //     hideProgressBar: false,
-        //     closeOnClick: true,
-        //     pauseOnHover: true,
-        //     draggable: true,
-        //     progress: undefined,
-        //     theme: "dark",
-        // });
         if (c) {
             setPasswordArray(passwordArray.filter(item => item.id !== id))
-            localStorage.setItem("passwords", JSON.stringify(passwordArray.filter(item => item.id !== id)))
+            // localStorage.setItem("passwords", JSON.stringify(passwordArray.filter(item => item.id !== id)))
+            let res = await fetch("https://localhost:3000/", {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ ...form, id })
+            })
         }
 
     }
