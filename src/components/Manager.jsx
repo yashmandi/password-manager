@@ -10,7 +10,17 @@ const Manager = () => {
     const [form, setform] = useState({ site: "", username: "", password: "" })
     const [passwordArray, setPasswordArray] = useState([])
 
+    const getPas
+
+    // useEffect(() => {
+    //     let passwords = localStorage.getItem("passwords");
+    //     if (passwords) {
+    //         setPasswordArray(JSON.parse(passwords))
+    //     }
+    // }, [])
+
     useEffect(() => {
+        let req = fethc ("https://localhost:3000/");
         let passwords = localStorage.getItem("passwords");
         if (passwords) {
             setPasswordArray(JSON.parse(passwords))
@@ -110,7 +120,7 @@ const Manager = () => {
 
                 <div className='text-white flex flex-col p-4 text-black gap-3 items-center'>
 
-                    <input value={form.site} onChange={handleChange} className='rounded-xl border text-black border-blue-800 p-4 py-1 w-full md:w-[300px]' placeholder='Enter Website URL' type="text" name="site" id="site" />
+                    <input value={form.site} onChange={handleChange} className='rounded-xl border text-black border-blue-800 p-4 py-1 w-full' placeholder='Enter Website URL' type="text" name="site" id="site" />
 
                     <div className='flex flex-col md:flex-row w-full justify-center gap-3'>
                         <input value={form.username} onChange={handleChange} className='rounded-xl border text-black border-blue-800 p-4 py-1 w-[300px]' placeholder='Enter Username' type="text" name="username" id="username" />
